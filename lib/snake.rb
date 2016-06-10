@@ -7,6 +7,6 @@ class Snake
   end
 
   def set_start_position
-    @position = [Random.rand(0..100), Random.rand(0..100)]
+    @position = [Random.rand(0..25), Random.rand(0..25)]
   end
 end
