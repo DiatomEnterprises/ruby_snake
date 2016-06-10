@@ -5,4 +5,4 @@ end
 game = Game.new
 puts game.snake.direction
 puts game.snake.position.inspect
-game.show
+game.start
