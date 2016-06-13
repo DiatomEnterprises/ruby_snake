@@ -14,22 +14,9 @@ class Game
   end
 
   def show
-    @snake.size.times do |snake_body_part|
-      case snake.direction
-
-      when :left
-        gameboard.board[snake.position.first][snake.position.last + snake.size + 1] = '.'
-        gameboard.board[snake.position.first][snake.position.last + snake_body_part] = 'x'
-      when :right
-        gameboard.board[snake.position.first][snake.position.last - snake.size - 1] = '.'
-        gameboard.board[snake.position.first][snake.position.last - snake_body_part] = 'x'
-      when :up
-        gameboard.board[snake.position.first - snake.size - 1][snake.position.last] = '.'
-        gameboard.board[snake.position.first - snake_body_part][snake.position.last] = 'x'
-      when :down
-        gameboard.board[snake.position.first + snake.size + 1][snake.position.last] = '.'
-        gameboard.board[snake.position.first + snake_body_part][snake.position.last] = 'x'
-      end
+    @gameboard.create_board
+    @snake.parts.each do |part|
+      @gameboard.board[part.first][part.last] = 'x'
     end
     print_board
   end
@@ -61,18 +48,20 @@ class Game
     while true
       show
       sleep(0.1)
-      c = read_char
+      #READ CHAR OR CONTINUE. CHECK IF CHAR IS PRESENT
+      # c = read_char
+      #
+      # case c
+      # when "\e"
+      #   puts "ESCAPE"
+      # when /^.$/
+      #   puts "SINGLE CHAR HIT: #{c.inspect}"
+      # else
+      #   puts "SOMETHING ELSE: #{c.inspect}"
+      # end
 
-      case c
-      when "\e"
-        puts "ESCAPE"
-      when /^.$/
-        puts "SINGLE CHAR HIT: #{c.inspect}"
-      else
-        puts "SOMETHING ELSE: #{c.inspect}"
-      end
-
-      snake.step
+      @snake.step
+      @snake.check_position(@gameboard.length, @gameboard.width)
     end
   end
 end
