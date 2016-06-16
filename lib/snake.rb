@@ -25,6 +25,23 @@ class Snake
     @parts.first[0] = max_length if position[0] < 0
   end
 
+  def turn(key_code)
+    @direction = case key_code
+    when 'w' || 'W'
+      :up
+    when 's' || 'S'
+      :down
+    when 'a' || 'A'
+      :left
+    when 'd' || 'D'
+      :right
+    end
+    # when 91 up
+    # when 66 down
+    #27 right
+    #68 left
+  end
+
   def step
     new_head = [@parts.first.first,@parts.first.last]
     case direction

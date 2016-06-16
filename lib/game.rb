@@ -26,40 +26,13 @@ class Game
   end
 
 
-
-  # Reads keypresses from the user including 2 and 3 escape character sequences.
-  def read_char
-    STDIN.echo = false
-    STDIN.raw!
-
-    input = STDIN.getc.chr
-    if input == "\e" then
-      input << STDIN.read_nonblock(3) rescue nil
-      input << STDIN.read_nonblock(2) rescue nil
-    end
-  ensure
-    STDIN.echo = true
-    STDIN.cooked!
-
-    return input
-  end
-
   def tick
     while true
       show
       sleep(0.1)
-      #READ CHAR OR CONTINUE. CHECK IF CHAR IS PRESENT
-      # c = read_char
-      #
-      # case c
-      # when "\e"
-      #   puts "ESCAPE"
-      # when /^.$/
-      #   puts "SINGLE CHAR HIT: #{c.inspect}"
-      # else
-      #   puts "SOMETHING ELSE: #{c.inspect}"
-      # end
-
+      key = GetKey.getkey
+      puts key
+      @snake.turn(key) if key
       @snake.step
       @snake.check_position(@gameboard.length, @gameboard.width)
     end
