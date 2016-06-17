@@ -4,6 +4,7 @@ class Game
   def initialize
     @gameboard = Board.new
     @snake = Snake.new
+    @food = Food.new(@gameboard.width, @gameboard.length)
   end
 
   def print_board
@@ -18,6 +19,7 @@ class Game
     @snake.parts.each do |part|
       @gameboard.board[part.first][part.last] = 'x'
     end
+    @gameboard.board[@food.x][@food.y] = 'o'
     print_board
   end
 
