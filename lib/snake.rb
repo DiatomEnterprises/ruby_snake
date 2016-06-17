@@ -26,7 +26,8 @@ class Snake
   end
 
   def turn(key_code)
-    @direction = case key_code
+    puts key_code
+    @direction = case key_code.chr
     when 'w' || 'W'
       :up
     when 's' || 'S'
@@ -35,6 +36,8 @@ class Snake
       :left
     when 'd' || 'D'
       :right
+    else
+      @direction
     end
     # when 91 up
     # when 66 down
