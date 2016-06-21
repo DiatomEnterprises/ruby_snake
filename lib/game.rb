@@ -9,6 +9,7 @@ class Game
 
   def print_board
     system('clear')
+    puts @snake.parts.first.inspect + "   " + @food.x.to_s + ":" + @food.y.to_s
     @gameboard.board.each do
       |line| puts line.each{|item| item}.join(" ")
     end
@@ -16,11 +17,30 @@ class Game
 
   def show
     @gameboard.create_board
+    @gameboard.board[@food.x][@food.y] = 'o'
     @snake.parts.each do |part|
       @gameboard.board[part.first][part.last] = 'x'
     end
-    @gameboard.board[@food.x][@food.y] = 'o'
     print_board
+  end
+
+  def check_snake_position
+    check_snake_met_wall
+    check_snake_ate_food
+  end
+
+  def check_snake_met_wall
+    @snake.update_head(1,0) if @snake.position[1] > @gameboard.width
+    @snake.update_head(1, @gameboard.width) if @snake.position[1] < 0
+    @snake.update_head(0, 0) if @snake.position[0] > @gameboard.length
+    @snake.update_head(0, @gameboard.length) if @snake.position[0] < 0
+  end
+
+  def check_snake_ate_food
+    if @snake.parts.first[0] == @food.x && @snake.parts.first[1] == @food.y
+      @snake.increase
+      @food = Food.new
+    end
   end
 
   def start
@@ -36,7 +56,7 @@ class Game
       puts key
       @snake.turn(key) if key
       @snake.step
-      @snake.check_position(@gameboard.length, @gameboard.width)
+      check_snake_position
     end
   end
 end

@@ -18,11 +18,12 @@ class Snake
     @position = [Random.rand(0..25), Random.rand(0..25)]
   end
 
-  def check_position(max_length, max_width)
-    @parts.first[1] = 0 if position[1] > max_width
-    @parts.first[1] = max_width if position[1] < 0
-    @parts.first[0] = 0 if position[0] > max_length
-    @parts.first[0] = max_length if position[0] < 0
+  def increase
+    @parts << position
+  end
+
+  def update_head(idx, value)
+    @parts.first[idx] = value
   end
 
   def turn(key_code)
