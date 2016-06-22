@@ -9,7 +9,7 @@ class Game
 
   def print_board
     system('clear')
-    puts @snake.parts.first.inspect + "   " + @food.x.to_s + ":" + @food.y.to_s
+    puts "Snake head: "+@snake.parts.first.inspect + "   " + @food.x.to_s + ":" + @food.y.to_s + "gameboard"+ @gameboard.width.to_s+":"+ @gameboard.length.to_s
     @gameboard.board.each do
       |line| puts line.each{|item| item}.join(" ")
     end
@@ -30,10 +30,11 @@ class Game
   end
 
   def check_snake_met_wall
-    @snake.update_head(1,0) if @snake.position[1] > @gameboard.width
-    @snake.update_head(1, @gameboard.width) if @snake.position[1] < 0
-    @snake.update_head(0, 0) if @snake.position[0] > @gameboard.length
-    @snake.update_head(0, @gameboard.length) if @snake.position[0] < 0
+    # value - 1 because it's an array from 0..width
+    @snake.update_head(1,0) if @snake.parts.first[1] > @gameboard.width-1
+    @snake.update_head(1, @gameboard.width-1) if @snake.parts.first[1] < 0
+    @snake.update_head(0, 0) if @snake.parts.first[0]  > @gameboard.length-1
+    @snake.update_head(0, @gameboard.length-1) if @snake.parts.first[0] < 0
   end
 
   def check_snake_ate_food

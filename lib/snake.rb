@@ -1,3 +1,4 @@
+require 'pry'
 class Snake
   attr_reader :size, :direction, :position, :parts
   def initialize
@@ -39,10 +40,6 @@ class Snake
     else
       @direction
     end
-    # when 91 up
-    # when 66 down
-    #27 right
-    #68 left
   end
 
   def step
@@ -58,7 +55,6 @@ class Snake
       new_head[0] += 1
     end
     @parts.unshift(new_head) #add to head
-    #change unshift, it causes index with minus
     @parts.pop #remove last
   end
 end
