@@ -1,7 +1,7 @@
 class Food
   attr_reader :x, :y
 
-  def initialize(board_max_x = 50, board_max_y = 50)
+  def initialize(board_max_x, board_max_y)
     @x = Random.rand(board_max_x)
     @y = Random.rand(board_max_y)
   end

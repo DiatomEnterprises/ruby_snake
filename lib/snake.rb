@@ -1,11 +1,11 @@
 require 'pry'
 class Snake
   attr_reader :size, :direction, :position, :parts
-  def initialize
+  def initialize(max_x, max_y)
     @size = 4
     @direction = :left
     @parts = []
-    set_start_position
+    set_start_position(max_x, max_y)
     create_snake
   end
 
@@ -15,8 +15,8 @@ class Snake
     end
   end
 
-  def set_start_position
-    @position = [Random.rand(0..25), Random.rand(0..25)]
+  def set_start_position(max_x, max_y)
+    @position = [Random.rand(0..max_x), Random.rand(0..max_y)]
   end
 
   def increase

@@ -1,0 +1,2 @@
+class MetWallError < StandardError; 
+end
