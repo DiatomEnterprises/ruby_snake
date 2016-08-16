@@ -9,7 +9,7 @@ class Game
 
   def print_board
     system('clear')
-    puts "Your size is: #{snake.size}"
+    puts "Your size is: #{snake.size} |  [Q]uit"
     gameboard.board.each do
       |line| puts line.each{|item| item}.join(" ")
     end
@@ -33,7 +33,7 @@ class Game
   def show_start_screen
     start = false
     while start == false
-      show_message("[S]tart [Q]uit")
+      show_message("[S]tart")
       key = GetKey.getkey
       sleep(0.5)
       if key && compare_key(key, 's')

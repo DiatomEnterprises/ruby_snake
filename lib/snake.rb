@@ -1,4 +1,3 @@
-require 'pry'
 class Snake
   attr_reader :size, :direction, :position, :parts
   def initialize(max_x, max_y)
@@ -24,7 +23,7 @@ class Snake
   end
 
   def set_start_position(max_x, max_y)
-    @position = [Random.rand(0..max_x), Random.rand(0..max_y)]
+    @position = [Random.rand(0..max_x-1), Random.rand(0..max_y-1)]
   end
 
   def increase
