@@ -15,12 +15,21 @@ class Snake
     end
   end
 
+  def head
+    parts.first
+  end
+
+  def body
+    parts[1..parts.length-1]
+  end
+
   def set_start_position(max_x, max_y)
     @position = [Random.rand(0..max_x), Random.rand(0..max_y)]
   end
 
   def increase
-    @parts << position
+    @size += 1
+    @parts << parts.last
   end
 
   def update_head(idx, value)
@@ -38,12 +47,12 @@ class Snake
     when 'd' || 'D'
       :right
     else
-      @direction
+      direction
     end
   end
 
   def step
-    new_head = [@parts.first.first,@parts.first.last]
+    new_head = [head.first,head.last]
     case direction
     when :left
       new_head[1] -= 1
@@ -54,7 +63,7 @@ class Snake
     when :down
       new_head[0] += 1
     end
-    @parts.unshift(new_head) #add to head
-    @parts.pop #remove last
+    parts.unshift(new_head)
+    parts.pop
   end
 end

@@ -6,5 +6,9 @@ class Food
     @y = Random.rand(board_max_y)
   end
 
+  def coordinates
+    [x,y]
+  end
+
 
 end

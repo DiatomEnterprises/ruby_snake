@@ -8,6 +8,7 @@ class Board
     create_board
   end
 
+# NOT YET IN ARICLE
   def center
     [board.length/2, board.first.length/2]
   end
@@ -20,7 +21,7 @@ class Board
       i+=1
     end
   end
-
+####
   def create_board
     @board = Array.new(length){ Array.new(width, '.') }
   end
