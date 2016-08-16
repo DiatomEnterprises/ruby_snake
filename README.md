@@ -11,3 +11,6 @@ and then it's
 ............[0, 3][0, 4]............
 ..................[1, 4][1, 5]......
 ```
+
+Check out my blog article!
+http://blog.diatomenterprises.com/?p=342&preview=true
