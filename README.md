@@ -1,5 +1,8 @@
 # ruby_snake
 Snake game on ruby
+
+[![asciicast](https://asciinema.org/a/a71jakx5dwtp4jy2962ef3sw8.png)](https://asciinema.org/a/a71jakx5dwtp4jy2962ef3sw8)
+
 ```
 Snake's movement is
 [0, 1][0, 2][0, 3][0, 4]............
