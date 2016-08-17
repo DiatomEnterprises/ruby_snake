@@ -1,2 +1,0 @@
-class MetWallError < StandardError; 
-end

@@ -11,14 +11,14 @@ describe Game do
   end
 
   it "#check_snake_position checks all checks successfully" do
-    expect{new_game.check_snake_position}.to_not raise_error(MetWallError)
+    expect{new_game.check_snake_position}.to_not raise_error(AteItselfError)
     expect{new_game.check_snake_position}.to_not change{new_game.snake.body}
   end
 
   it "#check_if_snake_ate_itself" do
     new_game.snake.parts[0] = new_game.snake.parts.last
-    expect{new_game.check_if_snake_ate_itself}.to raise_error(MetWallError)
-    expect{new_game.check_snake_position}.to raise_error(MetWallError)
+    expect{new_game.check_if_snake_ate_itself}.to raise_error(AteItselfError)
+    expect{new_game.check_snake_position}.to raise_error(AteItselfError)
   end
 
   it "#check_if_snake_met_wall" do
@@ -39,11 +39,6 @@ describe Game do
     expect(new_game.compare_key(65, 'a')).to be_truthy
     expect(new_game.compare_key(65, 'A')).to be_truthy
     expect(new_game.compare_key(65, 'Q')).to be_falsey
-  end
-
-  def execute_action key
-    return false if compare_key(key, 'q')
-    snake.turn(key)
   end
 
   it "#execute_action quit on Q" do
