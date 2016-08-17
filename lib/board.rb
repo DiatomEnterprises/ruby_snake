@@ -22,6 +22,16 @@ class Board
 
   def create_board
     @board = Array.new(length){ Array.new(width, '.') }
+    @board.each do |line|
+      line[0] = 'z'
+      line[width] = 'z'
+    end
+    @board.first.map! do |brick|
+      brick = 'z'
+    end
+    @board.last.map! do |brick|
+      brick = 'z'
+    end
   end
 
 end
