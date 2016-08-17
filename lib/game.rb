@@ -16,7 +16,7 @@ class Game
     end
   end
 
-  def show
+  def draw_food_and_snake
     gameboard.create_board
     @gameboard.board[food.x][food.y] = 'o'
     snake.parts.each do |part|
@@ -93,7 +93,7 @@ class Game
   def tick
     in_game = true
     while in_game
-      show
+      draw_food_and_snake
       sleep(0.1)
       if key = GetKey.getkey
         in_game = execute_action(key)
